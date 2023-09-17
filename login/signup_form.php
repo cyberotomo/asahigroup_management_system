@@ -20,7 +20,7 @@
 
     <p>
         <label for="password">パスワード：</label>
-        <input type="text" name="password">
+        <input type="password" name="password">
     </p>
 
     <p>

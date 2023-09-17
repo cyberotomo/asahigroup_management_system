@@ -6,30 +6,29 @@ $err = [];
 // filterinputでformからPOST送信されたusernameデータを取得する
 
 // ユーザーネームが空だったらfalseを返却する
-if($username = filter_input(INPUT_POST, 'username')){
+if(!$username = filter_input(INPUT_POST, 'username')){
  $err[] = 'ユーザー名を記入してください';
 }
 
 // メールアドレスが空だったらfalseを返却する
-if($email = filter_input(INPUT_POST, 'email')){
+if(!$email = filter_input(INPUT_POST, 'email')){
     $err[] = 'メールアドレスを記入してください';
 }
 // パスワードチェック（※正規表現にてチェック）
 $password = filter_input(INPUT_POST, 'password');
 
-if(!preg_match("/\A[a-z\d]{8,100}+\z/i",$pasword)){
+if(!preg_match("/\A[a-z\d]{8,100}+\z/i",$password)){
 $err[] = 'パスワードは英数字8文字以上100文字以下にしてください';
 }
 
 if(count($err) === 0){
-    // ユーザーを登録する処理
+    // ユーザーを登録する処理 ※エラーがない状態の場合
 
 }
-
-
-
-
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,9 +39,12 @@ if(count($err) === 0){
 <body>
     <!-- エラーの出力 -->
     <?php if (count($err) > 0 ): ?>
-    <?php foreach ($err as $e): ?>
-        <p><?php echo $e ?></p>
+        <?php foreach($err as $e): ?>
+            <p><?php echo $e ?></p>
+        <?php endforeach ?>
+    <?php else : ?>
     <p>ユーザー登録が完了しました</p>
+    <?php endif; ?>
     <a href="./signup_form.php">戻る</a>
 </body>
 </html>
