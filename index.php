@@ -3,7 +3,7 @@
 <body>
 
 <?php
-require_once('config.php');
+require_once('config/config.php');
 
 //データベースへ接続、テーブルがない場合は作成
 try {
